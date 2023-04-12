@@ -1,9 +1,11 @@
-import request from './request'
+import net from './request'
 
-export function login(data) {
-    return request({
-        url: '/vue-element-perfect/user/login',
-        method: 'post',
-        data
-    })
+const baseURL = '//test.forjhntech.online/api'
+
+export function userLogin(params) {
+  return net.post(`${baseURL}/login`, params)
+}
+
+export function getMenu(params) {
+  return net.post(`${baseURL}/system/menu/allLis`, params)
 }

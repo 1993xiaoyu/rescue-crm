@@ -29,6 +29,7 @@
     "exceljs": "^4.3.0",
     "file-saver": "^2.0.5",
     "fuse.js": "^6.6.2",
+    "js-base64": "^3.7.5",
     "jszip": "^3.9.1",
     "mavon-editor": "^2.10.4",
     "md-editor-v3": "^1.11.3",
@@ -54,7 +55,8 @@
     "vue3-text-clamp": "^0.1.1",
     "vuedraggable": "^4.1.0",
     "vuex": "^4.0.0-0",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "ssv-vue3-sdk": "^1.0.36"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
