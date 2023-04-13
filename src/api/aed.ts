@@ -13,6 +13,10 @@ export function aedList(params) {
   return net.post(`${baseURL}/system/aed/list`, params)
 }
 
+export function aedQuantity(params) {
+  return net.post(`${baseURL}/system/aed/quantity`, params)
+}
+
 export function aedRemove(params) {
   return net.post(`${baseURL}/system/aed/remove`, params)
 }

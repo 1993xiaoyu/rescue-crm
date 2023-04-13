@@ -21,9 +21,9 @@
   import EditDialog from '../components/edit-dialog.vue'
 
   const searchData = reactive({
-    aedId: '',
-    aedState: '',
-    trainTime: '',
+    aedNumber: '',
+    aedStatus: '',
+    installationTime: '',
   })
   const listRef = ref()
   const editDialogRef = ref()
@@ -33,9 +33,9 @@
   }
 
   const searchList = (data) => {
-    searchData.aedId = data.aedId || ''
-    searchData.aedState = data.aedState || ''
-    searchData.trainTime = data.trainTime || ''
+    searchData.aedNumber = data.aedNumber || ''
+    searchData.aedStatus = data.aedStatus || ''
+    searchData.installationTime = data.installationTime || ''
 
     listRef.value.getList()
   }

@@ -7,15 +7,13 @@ import { usePermissionStore } from '@/store/modules/permission'
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = ['/login', '/auth-redirect'] // 设置白名单
-// 记录路由
-let hasRoles = true
 
 router.beforeEach(async (to, from, next) => {
   // 开启进度条
   NProgress.start()
   // 设置标题
   if (typeof to.meta.title === 'string') {
-    document.title = to.meta.title || 'vue-admin-perfect'
+    document.title = to.meta.title || '5分钟社会救援圈'
   }
 
   const UserStore = useUserStore()
@@ -33,7 +31,6 @@ router.beforeEach(async (to, from, next) => {
         if (!PermissionStore.routes.length) {
           // 获取权限列表进行接口访问 因为这里页面要切换权限
           const accessRoutes = await PermissionStore.generateRoutes(UserStore.roles)
-          hasRoles = false
           accessRoutes.forEach((item) => router.addRoute(item)) // 动态添加访问路由表
           next({ ...to, replace: true }) // // 这里相当于push到一个页面 不在进入路由拦截
         } else {

@@ -11,7 +11,7 @@
       <el-menu
         mode="horizontal"
         :default-active="activeMenu"
-        background-color="#304156"
+        background-color="#04074a"
         text-color="#bfcbd9"
         :unique-opened="SettingStore.themeConfig.uniqueOpened"
         :collapse-transition="false"

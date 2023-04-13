@@ -2,10 +2,10 @@
   <div :id="id" :class="className" :style="{ height: height, width: width }" />
 </template>
 <script lang="ts" setup>
+  import { onMounted, onUnmounted } from 'vue'
   import { geoJson } from './map.js'
   import * as echarts from 'echarts'
   import { EChartsType } from 'echarts/core'
-  import { onMounted, onUnmounted } from "vue";
   import { cityIconData } from './data.js'
   import logo from '@/assets/image/logo.png'
   const props = defineProps({
@@ -15,7 +15,9 @@
     },
     config: {
       type: Object,
-      default: () => {},
+      default: () => {
+        return {}
+      },
     },
     id: {
       type: String,
@@ -27,7 +29,7 @@
     },
     height: {
       type: String,
-      default: '200px',
+      default: '400px',
     },
   })
 
@@ -297,15 +299,15 @@
           formatter(val) {
             console.log('val=======', val)
             let tipHtml = `
-                     <div class="m-info" style=" opacity: 0.95;background: rgba(25,27,29,1);" >
-                         <div class="title" style="padding-left: 12px;
-                         padding-top: 10px;
-                         padding-bottom: 10px;
-                         background: rgba(25,27,29,1);font-size: 20px;color: white;padding-right: 20px">${val.name}</div>
-<!--                         <div class="content" style=" padding: 12px; background: rgba(0,2,4,1);">-->
-          <!--                               <div style=" font-size: 22px; color: #ff0000;">258944</div>-->
-          <!--                        </div>-->
-          </div>`
+                       <div class="m-info" style=" opacity: 0.95;background: rgba(25,27,29,1);" >
+                           <div class="title" style="padding-left: 12px;
+                           padding-top: 10px;
+                           padding-bottom: 10px;
+                           background: rgba(25,27,29,1);font-size: 20px;color: white;padding-right: 20px">${val.name}</div>
+  <!--                         <div class="content" style=" padding: 12px; background: rgba(0,2,4,1);">-->
+            <!--                               <div style=" font-size: 22px; color: #ff0000;">258944</div>-->
+            <!--                        </div>-->
+            </div>`
             return tipHtml
           },
         },
@@ -319,8 +321,8 @@
     return chart
   }
 
-  onUnmounted(()=>{
-    chart&&chart.dispose()
+  onUnmounted(() => {
+    chart && chart.dispose()
   })
 
   onMounted(() => {

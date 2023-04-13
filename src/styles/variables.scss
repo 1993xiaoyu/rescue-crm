@@ -8,19 +8,20 @@ $tiffany: #4ab7bd;
 $yellow: #fec171;
 $panGreen: #30b08f;
 
+
 /* 全局 css 变量 */
 $primaryColor: var(--el-color-primary);
 
 // sidebar
-$menuText: #bfcbd9;
-$menuActiveText: #409eff;
-$subMenuActiveText: #f4f4f5;
+$menuText: #fff;
+$menuActiveText: #fff;
+$subMenuActiveText: #fff;
 
-$menuBg: #304156;
-$menuHover: #263445;
+$menuBg: #04074a;
+$menuHover: #04074a;
 
-$subMenuBg: #1f2d3d;
-$subMenuHover: #001528;
+$subMenuBg: #04074a;
+$subMenuHover: #04074a;
 
 $sideBarWidth: 210px;
 

@@ -8,13 +8,14 @@
       width="280"
     />
 
-    <el-table-column prop="stauts" label="状态" />
+    <el-table-column prop="stauts" label="机构状态" width="120" />
+    <el-table-column prop="management" label="机构性质" width="180" />
     <el-table-column prop="organizationType" label="机构类别" width="180" />
     <el-table-column prop="mechanismAdress" label="地址" width="280" show-overflow-tooltip />
-    <el-table-column prop="administrativeDivision" label="所属区域" width="120" />
+    <el-table-column prop="administrativeDivision" label="所属区域" />
 
     <el-table-column prop="phone" label="电话" width="180" />
-    <el-table-column prop="calibrationDate" label="批准日期 " width="180" />
+    <el-table-column prop="calibrationDate" label="批准日期 " width="120" />
 
     <el-table-column label="操作" fixed="right" width="180">
       <template #default="scope">
@@ -43,7 +44,9 @@
   const props = defineProps({
     searchData: {
       type: Object,
-      default: () => {},
+      default: () => {
+        return {}
+      },
     },
   })
   const router = useRouter()
@@ -77,7 +80,7 @@
     ElMessageBox.confirm('确定删除该机构吗?')
       .then(() => {
         const params = {
-          mechanismIds: item.mechanism_id,
+          mechanismIds: item.mechanismId,
         }
 
         mechanismRemove(params).then((res) => {

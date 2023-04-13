@@ -1,8 +1,21 @@
 .home-box {
+  width: 100%;
   background: #f4f8fb;
+  padding: 20px;
+  box-sizing: border-box;
   display: flex;
+  .left-box{
+    width: 600px;
+  }
   .right-box {
       margin-left: 20px;
       vertical-align: top;
+      width: calc(100% - 620px);
+  }
+  .right-box__bottom{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
   }
 }

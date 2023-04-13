@@ -1,6 +1,6 @@
 <template>
   <el-table :data="tableData" style="width: 100%">
-    <el-table-column prop="aedNumber" label="设备ID" width="180" fixed="left" />
+    <el-table-column prop="aedNumber" label="设备序列号" width="180" fixed="left" />
     <el-table-column prop="aedStatus" label="设备状态" width="100">
       <template #default="scope">
         <span
@@ -27,15 +27,14 @@
 
     <el-table-column prop="aedNo" label="AED柜号" width="180" />
     <el-table-column prop="aedModel" label="设备型号" width="180" />
+    <el-table-column prop="equipmentBrand" label="品牌" width="180" />
+
     <el-table-column prop="aedPosition" label="所属地址" width="180" show-overflow-tooltip />
-    <el-table-column prop="shequ" label="所属社区" width="180" show-overflow-tooltip />
     <el-table-column prop="aedPosition" label="安装地址" width="180" show-overflow-tooltip />
-    <el-table-column prop="changshang" label="安装厂商" width="180" show-overflow-tooltip />
     <el-table-column prop="cishu" label="使用次数" width="180" />
 
-    <el-table-column prop="time" label="安装时间" width="180" />
     <el-table-column prop="preTime" label="上次使用时间" width="180" />
-    <el-table-column prop="manager" label="设备管理员" width="180" />
+    <el-table-column prop="administrators" label="设备管理员" width="180" />
     <el-table-column label="操作" fixed="right" width="180">
       <template #default="scope">
         <el-button link type="primary" size="small" @click="handleEdit(scope.row)">编辑</el-button>
@@ -125,8 +124,8 @@
   // 查看详情
   const handleDetail = (item) => {
     router.push({
-      name: 'doctorDetail',
-      query: { id: item.id },
+      name: 'aedDetail',
+      query: { id: item.aedId, aedNumber: item.aedNumber },
     })
   }
 

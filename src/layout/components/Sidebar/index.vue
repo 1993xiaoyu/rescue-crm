@@ -4,7 +4,7 @@
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"
-        background-color="#304156"
+        background-color="#04074a"
         text-color="#bfcbd9"
         :unique-opened="SettingStore.themeConfig.uniqueOpened"
         :collapse-transition="false"
@@ -22,7 +22,7 @@
   import SubMenu from '../SubMenu/SubMenu.vue'
   import { useSettingStore } from '@/store/modules/setting'
   import { usePermissionStore } from '@/store/modules/permission'
-  import { computed, ref, watch } from 'vue'
+  import { computed, ref } from 'vue'
   import { useRoute } from 'vue-router'
 
   // 在setup中获取store

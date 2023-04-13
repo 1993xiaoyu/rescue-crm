@@ -26,3 +26,18 @@ export function getTitle(params) {
 export function getManagement(params) {
   return net.post(`${baseURL}/system/enumeration/management`, params)
 }
+
+//职业
+export function getOccupationt(params) {
+  return net.post(`${baseURL}/system/enumeration/occupation`, params)
+}
+
+//机构类型
+export function getOrganization(params) {
+  return net.post(`${baseURL}/system/enumeration/organization`, params)
+}
+
+//机构状态
+export function getMechanismStauts(params) {
+  return net.post(`${baseURL}/system/enumeration/mechanismStauts`, params)
+}

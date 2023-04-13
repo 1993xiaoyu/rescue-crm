@@ -1,6 +1,6 @@
 <template>
   <el-table :data="tableData" style="width: 100%">
-    <el-table-column prop="id" label="志愿者ID" width="180" fixed="left" />
+    <el-table-column prop="id" label="志愿者ID" fixed="left" />
     <el-table-column prop="volunteerName" label="姓名" width="180" />
     <el-table-column prop="volunteerState" label="人员状态" width="180">
       <template #default="scope">

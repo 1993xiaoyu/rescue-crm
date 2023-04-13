@@ -1,20 +1,22 @@
 <template>
-  <el-form ref="ruleFormRef" :model="ruleForm" label-width="80px" :inline="true">
-    <el-form-item label="设备ID" prop="name">
-      <el-input v-model="ruleForm.name" placeholder="请输入" />
+  <el-form ref="ruleFormRef" :model="ruleForm" label-width="100px" :inline="true">
+    <el-form-item label="设备序列号" prop="aedNumber">
+      <el-input v-model="ruleForm.aedNumber" placeholder="请输入" clearable />
     </el-form-item>
-    <el-form-item prop="date1" label="安装时间">
+    <el-form-item prop="installationTime" label="安装时间">
       <el-date-picker
-        v-model="ruleForm.date1"
+        v-model="ruleForm.installationTime"
         type="date"
         placeholder="请选择"
         style="width: 100%"
+        clearable
       />
     </el-form-item>
-    <el-form-item label="状态" prop="region">
-      <el-select v-model="ruleForm.region" placeholder="请选择">
-        <el-option label="上海" value="shagn" />
-        <el-option label="北京" value="beijing" />
+    <el-form-item label="状态" prop="aedStatus">
+      <el-select v-model="ruleForm.aedStatus" placeholder="请选择" clearable>
+        <el-option label="正常" value="正常" />
+        <el-option label="故障" value="故障" />
+        <el-option label="预警" value="预警" />
       </el-select>
     </el-form-item>
 
@@ -41,9 +43,9 @@
 
   const ruleFormRef = ref()
   const ruleForm = reactive({
-    volunteerId: '',
-    volunteerState: '',
-    trainTime: '',
+    aedNumbers: '',
+    aedStatus: '',
+    installationTime: '',
   })
 
   const uploadDialogShow = ref(false)

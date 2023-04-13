@@ -2,15 +2,21 @@
   <div class="quick-nav">
     <div class="title">快捷导航</div>
     <div class="content">
-      <div v-for="item in quickNavData.list" class="content-item" @click="goItem(item)">
+      <div
+        v-for="item in quickNavData.list"
+        class="content-item"
+        :key="item.name"
+        @click="goItem(item)"
+      >
         <img :src="item.icon" class="left-sidebar-item-icon" />
         <div>{{ item.title }}</div>
       </div>
     </div>
   </div>
 </template>
-<script setup>
-  import { reactive, ref } from 'vue'
+
+<script setup lang="ts">
+  import { reactive } from 'vue'
   import { useRouter } from 'vue-router'
   import RescueCheckedIcon from '@/assets/image/icon/rescue-checked.png'
   import StaffCheckedIcon from '@/assets/image/icon/staff-checked.png'

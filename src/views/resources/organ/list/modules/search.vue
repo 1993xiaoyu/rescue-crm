@@ -1,18 +1,38 @@
 <template>
   <el-form ref="ruleFormRef" :model="ruleForm" label-width="80px" :inline="true">
-    <el-form-item label="关键字" prop="mechanismName">
-      <el-input v-model="ruleForm.mechanismName" />
+    <el-form-item label="机构名称" prop="mechanismName">
+      <el-input v-model="ruleForm.mechanismName" clearable />
     </el-form-item>
 
-    <el-form-item label="状态" prop="stauts">
-      <el-select v-model="ruleForm.stauts" placeholder="请选择">
-        <el-option label="注册" value="1" />
-        <el-option label="变更" value="2" />
+    <el-form-item label="机构状态" prop="stauts">
+      <el-select v-model="ruleForm.stauts" placeholder="请选择" filterable clearable>
+        <el-option
+          :label="item.stauts"
+          :value="item.stauts"
+          :key="item.id"
+          v-for="item in mechanismStautsList"
+        />
       </el-select>
     </el-form-item>
-    <el-form-item label="机构类型" prop="organizationType">
-      <el-select v-model="ruleForm.organizationType" placeholder="请选择">
-        <el-option :label="item.management" :value="item.id" v-for="item in managementList" />
+    <el-form-item label="机构性质" prop="management">
+      <el-select v-model="ruleForm.management" placeholder="请选择" filterable clearable>
+        <el-option
+          :label="item.management"
+          :value="item.management"
+          :key="item.id"
+          v-for="item in managementList"
+        />
+      </el-select>
+    </el-form-item>
+
+    <el-form-item label="机构类别" prop="organizationType">
+      <el-select v-model="ruleForm.organizationType" placeholder="请选择" filterable clearable>
+        <el-option
+          :label="item.organizationType"
+          :value="item.organizationType"
+          :key="item.id"
+          v-for="item in organizationList"
+        />
       </el-select>
     </el-form-item>
 
@@ -37,16 +57,26 @@
 
   import useEnum from '@/hooks/useEnum'
 
-  const { getManagementData, managementList } = useEnum()
+  const {
+    getManagementData,
+    managementList,
+    getMechanismStautsData,
+    mechanismStautsList,
+    getOrganizationData,
+    organizationList,
+  } = useEnum()
 
   getManagementData()
+  getMechanismStautsData()
+  getOrganizationData()
 
   const emit = defineEmits(['editDialogShow', 'searchList'])
 
   const ruleFormRef = ref()
   const ruleForm = reactive({
+    management: '',
     mechanismName: '',
-    status: '',
+    stauts: '',
     organizationType: '',
   })
 

@@ -19,38 +19,57 @@
 
   const detailList = [
     {
-      title: '姓名',
-      key: 'tutorName',
+      title: '设备序列号',
+      key: 'aedNumber',
     },
     {
-      title: '性别',
-      key: 'tutorSex',
+      title: 'AED柜号',
+      key: 'aedNo',
     },
     {
-      title: '医院',
+      title: '品牌',
+      key: 'equipmentBrand',
+    },
+    {
+      title: '使用次数',
       key: 'tutorHospital',
     },
     {
-      title: '手机号',
-      key: 'tutorPhone',
+      title: '安装时间',
+      key: 'installationTime',
     },
 
     {
-      title: '科室',
+      title: '安装厂商',
       key: 'tutorDepartment',
     },
     {
-      title: '职称',
-      key: 'tutorEducation',
-    },
-
-    {
-      title: '出生日期',
-      key: 'tutorBirthday',
+      title: '安装地址',
+      key: 'aedPosition',
     },
     {
-      title: '家庭地址',
+      title: '安装位置',
       key: 'tutorHomeAddress',
+    },
+    {
+      title: '资金来源',
+      key: 'capitalSource',
+    },
+    {
+      title: '设备管理员',
+      key: 'administrators',
+    },
+    {
+      title: '管理员手机号',
+      key: 'administratorsPhone',
+    },
+    {
+      title: '管理单位座机',
+      key: 'administratorsLandline',
+    },
+    {
+      title: '保修期至',
+      key: 'tutorBirthday',
     },
   ]
 </script>

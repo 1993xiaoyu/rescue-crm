@@ -88,7 +88,6 @@
   import DiseaseBox from './components/disease-box.vue'
   import MigrationCharts from '@/components/DataScreen/migrationEcharts/index.vue'
   // import DataDivisionBox from './components/data-division-box.vue'
-  // import MapData from './components/map.vue'
 
   const router = useRouter()
 

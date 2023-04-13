@@ -3,6 +3,7 @@
     v-model="dialogVisible"
     :title="currDialogType === 'add' ? '新增机构' : '编辑机构'"
     width="70%"
+    top="2vh"
     class="dialog-dialog"
   >
     <el-form ref="ruleFormRef" :model="ruleForm" label-width="120px" status-icon :inline="true">
@@ -12,21 +13,36 @@
         <el-input v-model="ruleForm.mechanismName" />
       </el-form-item>
 
-      <el-form-item label="状态" prop="status">
-        <el-switch v-model="ruleForm.status" active-value="0" inactive-value="1" />
+      <el-form-item label="机构状态" prop="stauts">
+        <el-select v-model="ruleForm.stauts" placeholder="请选择" filterable>
+          <el-option
+            :label="item.stauts"
+            :value="item.stauts"
+            :key="item.id"
+            v-for="item in mechanismStautsList"
+          />
+        </el-select>
+      </el-form-item>
+
+      <el-form-item label="机构性质" prop="management" required :show-message="false">
+        <el-select v-model="ruleForm.management" placeholder="请选择" filterable>
+          <el-option
+            :label="item.management"
+            :value="item.management"
+            :key="item.id"
+            v-for="item in managementList"
+          />
+        </el-select>
       </el-form-item>
 
       <el-form-item label="机构类别" prop="organizationType" required :show-message="false">
-        <el-select v-model="ruleForm.organizationType" placeholder="请选择">
-          <el-option label="社区卫生服务中心" value="1" />
-          <el-option label="所属机构2" value="2" />
-          <el-option label="所属机构3" value="3" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="经营性质" prop="management" required :show-message="false">
-        <el-select v-model="ruleForm.management" placeholder="请选择">
-          <el-option label="非营利性（政府办）" value="1" />
-          <el-option label="私立" value="2" />
+        <el-select v-model="ruleForm.organizationType" placeholder="请选择" filterable>
+          <el-option
+            :label="item.organizationType"
+            :value="item.organizationType"
+            :key="item.id"
+            v-for="item in organizationList"
+          />
         </el-select>
       </el-form-item>
 
@@ -110,9 +126,25 @@
 </template>
 
 <script setup>
-  import { reactive, ref, computed } from 'vue'
+  import { ref, computed } from 'vue'
   import { mechanismAdd, mechanismEdit } from '@/api/organ.ts'
   import { ElMessage } from 'element-plus'
+
+  import useEnum from '@/hooks/useEnum'
+
+  const {
+    getManagementData,
+    managementList,
+    getMechanismStautsData,
+    mechanismStautsList,
+    getOrganizationData,
+    organizationList,
+  } = useEnum()
+
+  getManagementData()
+  getMechanismStautsData()
+  getOrganizationData()
+
   const emit = defineEmits(['closeEditDialogShow'])
 
   const props = defineProps({
@@ -126,7 +158,7 @@
   const defData = {
     mechanismName: '',
     organizationType: '',
-    status: '0',
+    stauts: '',
     mechanismAdress: '',
     sendCard: '',
     phone: '',

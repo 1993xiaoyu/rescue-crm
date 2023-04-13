@@ -2,15 +2,13 @@
   <div class="map-box">
     <div class="title">事件及资源分部</div>
     <div class="content">
-      <div v-for="item in systemData.list" class="content-item">
-        <span class="content-item__title">{{ item.title }}</span>
-        <span class="content-item__val">{{ item.value }}</span>
-      </div>
+      <MigrationCharts height="462px" width="100%" id="migration" />
     </div>
   </div>
 </template>
 <script setup>
   import { reactive } from 'vue'
+  import MigrationCharts from '@/components/DataScreen/migrationEcharts/index.vue'
 
   const systemData = reactive({
     list: [

@@ -9,7 +9,7 @@ const workRouter = [
     redirect: '/aed/aedList',
     name: 'aed',
     meta: {
-      title: 'aed',
+      // title: 'aed管理',
       icon: 'management',
       roles: ['admin'],
     },

@@ -17,8 +17,9 @@
   import EditDialog from '../components/edit-dialog.vue'
 
   const searchData = reactive({
+    stauts: '',
     mechanismName: '',
-    status: '',
+    management: '',
     organizationType: '',
   })
   const listRef = ref()
@@ -26,12 +27,16 @@
   const editDialogShow = ref(false)
   const organDialogShow = (data) => {
     editDialogShow.value = data
+    if (!editDialogShow.value) {
+      listRef.value.getList()
+    }
   }
 
   const searchList = (data) => {
     searchData.mechanismName = data.mechanismName || ''
-    searchData.status = data.status || ''
+    searchData.stauts = data.stauts || ''
     searchData.organizationType = data.organizationType || ''
+    searchData.management = data.management || ''
 
     listRef.value.getList()
   }

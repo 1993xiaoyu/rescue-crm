@@ -122,7 +122,7 @@
     flex-shrink: 0;
     width: 80px;
     height: 100%;
-    background-color: #304156;
+    background-color: #04074a;
     .el-scrollbar {
       height: calc(100% - 55px);
     }

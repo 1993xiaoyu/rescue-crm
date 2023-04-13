@@ -1,6 +1,6 @@
 <template>
   <div class="home-box">
-    <div>
+    <div class="lefet-box">
       <QuickNav />
       <System />
       <Rescue />
@@ -8,6 +8,10 @@
     </div>
     <div class="right-box">
       <Map />
+      <div class="right-box__bottom">
+        <ErrorList />
+        <WarnList />
+      </div>
     </div>
   </div>
 </template>
@@ -17,10 +21,8 @@
   import Rescue from './components/rescue.vue'
   import WeekCensus from './components/week-census.vue'
   import Map from './components/map.vue'
-
-  const goTo = (url) => {
-    window.open(url, '_blank')
-  }
+  import ErrorList from './components/error-list.vue'
+  import WarnList from './components/warn-list.vue'
 </script>
 
 <style scoped lang="scss">
