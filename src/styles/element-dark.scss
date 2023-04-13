@@ -12,16 +12,6 @@ html.dark {
     background: none;
   }
 
-
-  // 编辑器
-  .w-e-toolbar, .w-e-text-container, .w-e-menu-panel{
-    background: none!important;
-  }
-  // 富文本
-  .md{
-    background: none!important;
-  }
-
   #app{
     .sidebar-container{
       background: var(--el-bg-color)!important;

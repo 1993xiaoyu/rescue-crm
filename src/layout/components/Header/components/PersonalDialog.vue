@@ -31,7 +31,7 @@
   import { ref, defineExpose, reactive } from 'vue'
   import type { ElForm } from 'element-plus'
   const dialogVisible = ref(false)
-  import {useUserStore} from "@/store/modules/user"
+  import { useUserStore } from '@/store/modules/user'
   const UserStore = useUserStore()
   const show = () => {
     dialogVisible.value = true
