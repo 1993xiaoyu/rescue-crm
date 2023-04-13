@@ -4,27 +4,13 @@ import Layout from '@/layout/index.vue'
 interface extendRoute {
   hidden?: boolean
 }
-//
-import tableRouter from './modules/table'
 import dataScreenRouter from './modules/dataScreen'
-import excelRouter from './modules/excel'
-import systemRouter from './modules/system'
-import echartsRouter from './modules/echarts'
-import othersRouter from './modules/other'
-import formRouter from './modules/form'
-import functionPageRouter from './modules/functionPage'
+import workRouter from './modules/work'
+import aedRouter from './modules/aed'
+import resourcesRouter from './modules/resources'
 
 // 异步组件
-export const asyncRoutes = [
-  ...dataScreenRouter,
-  ...echartsRouter,
-  ...tableRouter,
-  ...formRouter,
-  ...othersRouter,
-  ...functionPageRouter,
-  ...excelRouter,
-  ...systemRouter,
-]
+export const asyncRoutes = [...dataScreenRouter, ...aedRouter, ...resourcesRouter, ...workRouter]
 
 /**
  * path ==> 路由路径

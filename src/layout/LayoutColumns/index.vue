@@ -48,7 +48,6 @@
           <HeaderToolLeft />
           <HeaderToolRight />
         </div>
-        <TagsView v-if="themeConfig.showTag" />
       </div>
       <Main />
     </div>
@@ -61,7 +60,6 @@
   import { usePermissionStore } from '@/store/modules/permission'
   import { useSettingStore } from '@/store/modules/setting'
   import SubMenu from '../components/SubMenu/SubMenu.vue'
-  import TagsView from '../components/TagsView/index.vue'
   const PermissionStore = usePermissionStore()
   const SettingStore = useSettingStore()
   const route = useRoute()

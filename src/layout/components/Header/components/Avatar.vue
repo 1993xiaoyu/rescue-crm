@@ -29,13 +29,11 @@
 
   import AvatarLogo from '@/assets/image/avatar.png'
   import { useUserStore } from '@/store/modules/user'
-  import { useTagsViewStore } from '@/store/modules/tagsView'
   import { usePermissionStore } from '@/store/modules/permission'
   import PersonalDialog from './PersonalDialog.vue'
 
   const router = useRouter()
   const UserStore = useUserStore()
-  const TagsViewStore = useTagsViewStore()
   const PermissionStore = usePermissionStore()
 
   // 用户信息
@@ -51,7 +49,6 @@
       .then(async () => {
         await UserStore.logout()
         await router.push({ path: '/login' })
-        TagsViewStore.clearVisitedView()
         PermissionStore.clearRoutes()
         ElMessage({
           type: 'success',
