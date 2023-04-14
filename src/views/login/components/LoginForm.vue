@@ -114,11 +114,11 @@
           // encrypt.setPublicKey(publicKey);
           // let password = encrypt.encrypt(loginForm.password);
           const queryPar = getQueryObject(location.href) || {}
-          const env = queryPar.env === 'online' ? 'online' : 'test'
+          const env = queryPar.env === 'master' ? 'master' : 'test'
           const res = await UserStore.login({ username, password })
-          console.log(res)
 
           loading.value = false
+          const cockpitUserList = ['barmyy', 'fyrmyyjhz', 'fysk', 'hdfjgly', 'hysq']
           if (res.code === 0) {
             const tenantUserInfo = {
               password,
@@ -126,7 +126,14 @@
               env,
             }
             localStorage.setItem('TenantUserInfo', JSON.stringify(tenantUserInfo))
-            router.push({ path: '/home' })
+            if (cockpitUserList.includes(username)) {
+              router.push({
+                name: 'cockpit',
+                query: { env },
+              })
+            } else {
+              router.push({ path: '/home' })
+            }
           }
         }, 1000)
       } else {

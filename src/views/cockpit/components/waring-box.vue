@@ -103,7 +103,7 @@
       );
     }
     .el-table th.el-table__cell {
-      background-color: transparent;
+      background-color: transparent !important;
 
       color: #6fc3ff;
     }

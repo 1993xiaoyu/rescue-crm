@@ -19,6 +19,7 @@ export const useUserStore = defineStore({
     login(userInfo) {
       return userLogin(userInfo).then((res) => {
         if (res.code === 0) {
+          this.userInfo = userInfo
           this.token = userInfo.username
           this.getRoles()
         }

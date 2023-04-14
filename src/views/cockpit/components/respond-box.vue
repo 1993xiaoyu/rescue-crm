@@ -92,7 +92,7 @@
 <style lang="scss">
   .respond-box {
     .el-table {
-      background-color: transparent;
+      background-color: transparent !important;
     }
     .el-table__inner-wrapper::before {
       display: none;
@@ -122,7 +122,7 @@
       );
     }
     .el-table th.el-table__cell {
-      background-color: transparent;
+      background-color: transparent !important;
 
       color: #6fc3ff;
     }

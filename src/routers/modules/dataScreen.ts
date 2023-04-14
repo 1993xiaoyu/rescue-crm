@@ -15,6 +15,8 @@ const dataScreenRouter = [
       title: '驾驶舱',
       icon: 'Histogram',
     },
+    hidden: true,
+
     component: () => import('@/views/cockpit/index.vue'),
   },
 ]

@@ -8,8 +8,8 @@
       class="demo-ruleForm"
       :size="formSize"
     >
-      <el-form-item label="姓名">
-        <el-input v-model="ruleForm.name" disabled></el-input>
+      <el-form-item label="用户名" prop="username">
+        <el-input v-model="ruleForm.username" disabled></el-input>
       </el-form-item>
       <el-form-item label="旧的密码" prop="password">
         <el-input v-model="ruleForm.password" type="password"></el-input>
@@ -30,21 +30,20 @@
 <script lang="ts" setup>
   import { ref, defineExpose, reactive } from 'vue'
   import type { ElForm } from 'element-plus'
-  const dialogVisible = ref(false)
   import { useUserStore } from '@/store/modules/user'
+
+  const dialogVisible = ref(false)
   const UserStore = useUserStore()
   const show = () => {
     dialogVisible.value = true
   }
-  const hide = () => {
-    dialogVisible.value = false
-  }
+
   type FormInstance = InstanceType<typeof ElForm>
 
   const formSize = ref('')
   const ruleFormRef = ref<FormInstance>()
   const ruleForm = reactive({
-    name: UserStore.userInfo.username,
+    username: UserStore.userInfo.username,
     password: UserStore.userInfo.password,
     configPassword: '',
   })
@@ -67,11 +66,6 @@
         return false
       }
     })
-  }
-
-  const resetForm = (formEl: FormInstance | undefined) => {
-    if (!formEl) return
-    formEl.resetFields()
   }
 
   defineExpose({
