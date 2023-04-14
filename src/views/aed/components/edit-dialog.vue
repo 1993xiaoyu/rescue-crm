@@ -106,7 +106,7 @@
 
 <script setup>
   import { reactive, ref, computed } from 'vue'
-  import { aedAdd, aedEdit } from '@/api/aed.ts'
+  import { aedAdd, aedEdit } from '@/api/aed'
   import { ElMessage } from 'element-plus'
   const emit = defineEmits(['closeEditDialogShow', 'refreshList'])
 

@@ -59,7 +59,7 @@
 <script setup>
   import { ref, reactive, defineExpose } from 'vue'
   import { useRouter } from 'vue-router'
-  import { aedRemove, aedList } from '@/api/aed.ts'
+  import { aedRemove, aedList } from '@/api/aed'
   import { ElMessage, ElMessageBox } from 'element-plus'
   const emit = defineEmits(['emitAed'])
   const props = defineProps({

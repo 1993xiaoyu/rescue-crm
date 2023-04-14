@@ -15,9 +15,9 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
   import { reactive, onMounted } from 'vue'
-  import { aedQuantity } from '@/api/aed.ts'
+  import { aedQuantity } from '@/api/aed'
 
   const aedCensusObj = reactive({
     aedTotal: {
@@ -29,57 +29,57 @@
       name: '正常台数',
       value: 263,
       tipName: '正常率',
-      tipNum: '71.88%',
+      tipNum: '',
     },
     aedCheck: {
       name: '自检失败',
       value: 4,
       tipName: '故障率',
-      tipNum: '71.88%',
+      tipNum: '',
     },
     aedWarn: {
       name: '预警台数',
       value: 6,
       tipName: '预警率',
-      tipNum: '71.88%',
+      tipNum: '',
     },
     aedOffline: {
       name: '掉线台数',
       value: 2,
       tipName: '掉线率',
-      tipNum: '71.88%',
+      tipNum: '',
     },
     batteryErrorTotal: {
       name: '电池/电极片异常',
       value: 100,
       tipName: '故障率',
-      tipNum: '71.88%',
+      tipNum: '',
     },
     overtimeTotal: {
       name: '超时巡检台数',
       value: 2,
       tipName: '超时率',
-      tipNum: '71.88%',
+      tipNum: '',
     },
   })
 
   const percentNum = (item) => {
-    const aedTotal = aedCensusObj.aedTotal.value || 0
-
-    return !aedTotal ? 0 : ((item / aedTotal) * 100).toFixed(2) + '%'
+    const aedTotal = aedCensusObj.aedTotal.value || ''
+    return !aedTotal ? '' : ((item / aedTotal) * 100).toFixed(2) + '%'
   }
+
   // 请求列表
   const getQuantityData = async () => {
-    const res = await aedQuantity({})
+    const res: any = await aedQuantity({})
     const { aedTotal, aedNormal, aedOffline, aedCheck, aedWarn } = res
     aedCensusObj.aedTotal.value = aedTotal || 0
-    aedCensusObj.aedNormal.tipNum = percentNum(aedNormal) || 0
+    aedCensusObj.aedNormal.tipNum = percentNum(aedNormal) || ''
     aedCensusObj.aedNormal.value = aedNormal || 0
-    aedCensusObj.aedOffline.tipNum = percentNum(aedOffline) || 0
+    aedCensusObj.aedOffline.tipNum = percentNum(aedOffline) || ''
     aedCensusObj.aedOffline.value = aedOffline || 0
-    aedCensusObj.aedCheck.tipNum = percentNum(aedCheck) || 0
+    aedCensusObj.aedCheck.tipNum = percentNum(aedCheck) || ''
     aedCensusObj.aedCheck.value = aedCheck || 0
-    aedCensusObj.aedWarn.tipNum = percentNum(aedWarn) || 0
+    aedCensusObj.aedWarn.tipNum = percentNum(aedWarn) || ''
     aedCensusObj.aedWarn.value = aedWarn || 0
   }
 

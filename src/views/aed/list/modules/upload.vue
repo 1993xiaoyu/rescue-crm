@@ -44,7 +44,7 @@
 
 <script setup>
   import { computed, ref } from 'vue'
-  import { importTemplate } from '@/api/aed.ts'
+  import { importTemplate } from '@/api/aed'
   import { ElMessage } from 'element-plus'
   const emit = defineEmits(['closeUploadDialogShow'])
   const uploadRef = ref()
