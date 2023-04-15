@@ -20,6 +20,7 @@
     tutorName: '',
     tutorHospital: '',
     tutorDepartment: '',
+    tutorState: '',
   })
   const listRef = ref()
   const editDialogRef = ref()
@@ -32,6 +33,7 @@
     searchData.tutorName = data.tutorName || ''
     searchData.tutorDepartment = data.tutorDepartment || ''
     searchData.tutorHospital = data.tutorHospital || ''
+    searchData.tutorState = data.tutorState || ''
 
     listRef.value.getList()
   }

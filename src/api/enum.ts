@@ -41,3 +41,8 @@ export function getOrganization(params) {
 export function getMechanismStauts(params) {
   return net.post(`${baseURL}/system/enumeration/mechanismStauts`, params)
 }
+
+// 机构名称
+export function mechanismName(params) {
+  return net.post(`${baseURL}/system/enumeration/mechanismName`, params)
+}

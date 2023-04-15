@@ -14,9 +14,12 @@
       <el-form-item label="品牌" prop="equipmentBrand" required :show-message="false">
         <el-input v-model="ruleForm.equipmentBrand" />
       </el-form-item>
-      <el-form-item label="保修期至" prop="warranty">
+      <el-form-item label="设备型号" prop="aedModel" required :show-message="false">
+        <el-input v-model="ruleForm.aedModel" />
+      </el-form-item>
+      <el-form-item label="保修期至" prop="equipmentDate">
         <el-date-picker
-          v-model="ruleForm.warranty"
+          v-model="ruleForm.equipmentDate"
           type="date"
           placeholder="请选择保修日期"
           style="width: 100%"
@@ -25,31 +28,42 @@
       </el-form-item>
 
       <el-form-item label="设备状态" prop="aedStatus" required :show-message="false">
-        <el-radio-group v-model="ruleForm.aedStatus">
-          <el-radio label="正常">正常</el-radio>
-          <el-radio label="故障">故障</el-radio>
-          <el-radio label="预警">预警</el-radio>
-        </el-radio-group>
+        <el-select v-model="ruleForm.aedStatus" placeholder="请选择" filterable>
+          <el-option
+            :label="item.aedStatus"
+            :value="item.aedStatus"
+            :key="item.id"
+            v-for="item in enumObj.aedStatusList || []"
+          />
+        </el-select>
       </el-form-item>
 
       <el-form-item label="电池状态" prop="batteryStatus">
-        <el-radio-group v-model="ruleForm.batteryStatus">
-          <el-radio label="正常">正常</el-radio>
-          <el-radio label="异常">异常</el-radio>
-        </el-radio-group>
+        <el-select v-model="ruleForm.batteryStatus" placeholder="请选择" filterable>
+          <el-option
+            :label="item.batteryStatus"
+            :value="item.batteryStatus"
+            :key="item.id"
+            v-for="item in enumObj.batteryStatusList || []"
+          />
+        </el-select>
       </el-form-item>
       <el-form-item label="电池电量" prop="aedLevel" required :show-message="false">
         <el-input v-model="ruleForm.aedLevel" placeholder="现有电量/总电量" />
       </el-form-item>
       <el-form-item label="电极片状态" prop="electrodeStatus">
-        <el-radio-group v-model="ruleForm.electrodeStatus">
-          <el-radio label="正常">正常</el-radio>
-          <el-radio label="异常">异常</el-radio>
-        </el-radio-group>
+        <el-select v-model="ruleForm.electrodeStatus" placeholder="请选择" filterable>
+          <el-option
+            :label="item.electrodeStatus"
+            :value="item.electrodeStatus"
+            :key="item.id"
+            v-for="item in enumObj.electrodeStatusList || []"
+          />
+        </el-select>
       </el-form-item>
 
-      <el-form-item label="安装厂商" prop="manufacturer">
-        <el-input v-model="ruleForm.manufacturer" />
+      <el-form-item label="安装厂商" prop="installationManufacturer">
+        <el-input v-model="ruleForm.installationManufacturer" />
       </el-form-item>
       <el-form-item label="安装地址" prop="aedPosition" required :show-message="false">
         <el-input v-model="ruleForm.aedPosition" />
@@ -105,7 +119,7 @@
 </template>
 
 <script setup>
-  import { reactive, ref, computed } from 'vue'
+  import { ref, computed } from 'vue'
   import { aedAdd, aedEdit } from '@/api/aed'
   import { ElMessage } from 'element-plus'
   const emit = defineEmits(['closeEditDialogShow', 'refreshList'])
@@ -114,6 +128,10 @@
     show: {
       type: Boolean,
       default: false,
+    },
+    enumObj: {
+      type: Object,
+      default: () => {},
     },
   })
 
@@ -130,12 +148,14 @@
     warranty: '',
     batteryStatus: '',
     electrodeStatus: '',
-    manufacturer: '',
+    installationManufacturer: '',
     installationTime: '',
     capitalSource: '',
     aedLatitude: '',
     aedLongitude: '',
     administratorsLandline: '',
+    aedModel: '',
+    equipmentDate: '',
   }
   const ruleForm = ref({})
 

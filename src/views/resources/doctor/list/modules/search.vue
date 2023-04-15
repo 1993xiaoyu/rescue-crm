@@ -5,7 +5,7 @@
     </el-form-item>
     <el-form-item label="状态" prop="tutorState">
       <el-select v-model="ruleForm.tutorState" placeholder="请选择" clearable>
-        <el-option label="开启" value="0" />
+        <el-option label="正常" value="0" />
         <el-option label="冻结" value="1" />
       </el-select>
     </el-form-item>

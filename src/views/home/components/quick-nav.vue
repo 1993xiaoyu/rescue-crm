@@ -29,7 +29,7 @@
       {
         icon: RescueCheckedIcon,
         title: '救援中心',
-        name: 'commandList',
+        name: 'rescueList',
       },
       {
         icon: AedCheckedIcon,

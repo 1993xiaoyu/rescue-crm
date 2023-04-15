@@ -22,8 +22,8 @@
         <el-input v-model="ruleForm.loginName" />
       </el-form-item>
 
-      <el-form-item label="手机号" prop="phoneNumber" required>
-        <el-input v-model="ruleForm.phoneNumber" />
+      <el-form-item label="手机号" prop="phonenumber" required>
+        <el-input v-model="ruleForm.phonenumber" />
       </el-form-item>
 
       <el-form-item label="邮箱" prop="email">
@@ -32,8 +32,8 @@
 
       <el-form-item label="性别" prop="sex">
         <el-radio-group v-model="ruleForm.sex">
-          <el-radio label="0">男</el-radio>
-          <el-radio label="1">女</el-radio>
+          <el-radio label="男">男</el-radio>
+          <el-radio label="女">女</el-radio>
         </el-radio-group>
       </el-form-item>
 
@@ -96,10 +96,10 @@
   const defData = {
     roleIds: '',
     userName: '',
-    sex: '',
+    sex: '男',
     status: '0',
     hospital: '',
-    phoneNumber: '',
+    phonenumber: '',
     email: '',
     idicciid: '',
     birthday: '',

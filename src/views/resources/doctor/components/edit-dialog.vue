@@ -3,6 +3,7 @@
     v-model="dialogVisible"
     :title="currDialogType === 'add' ? '新增医护人员' : '编辑医护人员'"
     width="60%"
+    top="2vh"
     class="tutor-dialog"
   >
     <el-form ref="ruleFormRef" :model="ruleForm" label-width="100px" status-icon :inline="true">

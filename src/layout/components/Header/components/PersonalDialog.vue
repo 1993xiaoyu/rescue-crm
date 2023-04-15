@@ -11,11 +11,11 @@
       <el-form-item label="用户名" prop="username">
         <el-input v-model="ruleForm.username" disabled></el-input>
       </el-form-item>
-      <el-form-item label="旧的密码" prop="password">
-        <el-input v-model="ruleForm.password" type="password"></el-input>
+      <el-form-item label="旧的密码" prop="oldPassword">
+        <el-input v-model="ruleForm.oldPassword" type="password"></el-input>
       </el-form-item>
-      <el-form-item label="新的密码" prop="configPassword">
-        <el-input v-model="ruleForm.configPassword" type="password"></el-input>
+      <el-form-item label="新的密码" prop="newPassword">
+        <el-input v-model="ruleForm.newPassword" type="password"></el-input>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -31,6 +31,7 @@
   import { ref, defineExpose, reactive } from 'vue'
   import type { ElForm } from 'element-plus'
   import { useUserStore } from '@/store/modules/user'
+  import { resetPwd } from '@/api/user'
 
   const dialogVisible = ref(false)
   const UserStore = useUserStore()
@@ -44,8 +45,8 @@
   const ruleFormRef = ref<FormInstance>()
   const ruleForm = reactive({
     username: UserStore.userInfo.username,
-    password: UserStore.userInfo.password,
-    configPassword: '',
+    oldPassword: UserStore.userInfo.password,
+    newPassword: '',
   })
   const rules = reactive({
     configPassword: [
@@ -60,9 +61,13 @@
     if (!formEl) return
     formEl.validate((valid) => {
       if (valid) {
-        console.log('submit!')
+        resetPwd({ oldPassword: ruleForm.oldPassword, newPassword: ruleForm.newPassword }).then(
+          (res) => {
+            dialogVisible.value = false
+            console.log(res, '===res')
+          },
+        )
       } else {
-        console.log('error submit!')
         return false
       }
     })

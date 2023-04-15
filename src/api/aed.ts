@@ -35,3 +35,18 @@ export function importData(params) {
 export function exportData(params) {
   return net.post(`${baseURL}/system/aed/export`, params)
 }
+
+// 设备状态
+export function aedStatus(params) {
+  return net.post(`${baseURL}/system/enumeration/aedStatus`, params)
+}
+
+// 电池状态
+export function batteryStatus(params) {
+  return net.post(`${baseURL}/system/enumeration/batteryStatus`, params)
+}
+
+// 电极片状态
+export function electrodeStatus(params) {
+  return net.post(`${baseURL}/system/enumeration/electrodeStatus`, params)
+}

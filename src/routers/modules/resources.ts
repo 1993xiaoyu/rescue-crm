@@ -9,7 +9,7 @@ const formRouter = [
     redirect: '/resources/volunteerList',
     name: 'resources',
     meta: {
-      title: '人员机构管理',
+      title: '人员及机构管理',
       icon: 'Grape',
     },
     children: [
@@ -30,20 +30,20 @@ const formRouter = [
         path: '/resources/doctorList',
         component: () => import('@/views/resources/doctor/list/index.vue'),
         name: 'doctorList',
-        meta: { title: '一线医护人员管理', keepAlive: true },
+        meta: { title: '医护管理', keepAlive: true },
       },
       {
         path: '/resources/doctorDetail',
         component: () => import('@/views/resources/doctor/detail/index.vue'),
         name: 'doctorDetail',
         hidden: true,
-        meta: { title: '一线医护人员详情' },
+        meta: { title: '医护详情' },
       },
       {
         path: '/resources/organList',
         component: () => import('@/views/resources/organ/list/index.vue'),
         name: 'organList',
-        meta: { title: '机构及区域管理', keepAlive: true },
+        meta: { title: '机构管理', keepAlive: true },
       },
       {
         path: '/resources/organDetail',

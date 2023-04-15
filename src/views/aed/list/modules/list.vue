@@ -3,15 +3,17 @@
     <el-table-column prop="aedNumber" label="设备序列号" width="180" fixed="left" />
     <el-table-column prop="aedStatus" label="设备状态" width="100">
       <template #default="scope">
-        <span
-          :class="{
-            'aedStatus-normal': scope.row.aedStatus === '正常',
-            'aedStatus-error': scope.row.aedStatus.indexOf('故障') > -1,
-            'aedStatus-warn': scope.row.aedStatus.indexOf('预警') > -1,
-          }"
+        <el-tag
+          class="ml-2"
+          :type="
+            scope.row.aedStatus === '正常'
+              ? 'success'
+              : scope.row.aedStatus === '掉线'
+              ? 'warning'
+              : 'danger'
+          "
+          >{{ scope.row.aedStatus }}</el-tag
         >
-          {{ scope.row.aedStatus }}
-        </span>
       </template>
     </el-table-column>
 
@@ -29,7 +31,6 @@
     <el-table-column prop="aedModel" label="设备型号" width="180" />
     <el-table-column prop="equipmentBrand" label="品牌" width="180" />
 
-    <el-table-column prop="aedPosition" label="所属地址" width="180" show-overflow-tooltip />
     <el-table-column prop="aedPosition" label="安装地址" width="180" show-overflow-tooltip />
     <el-table-column prop="cishu" label="使用次数" width="180" />
 
@@ -65,7 +66,9 @@
   const props = defineProps({
     searchData: {
       type: Object,
-      default: () => {},
+      default: () => {
+        return {}
+      },
     },
   })
   const router = useRouter()
@@ -145,24 +148,7 @@
     margin-top: 30px;
     justify-content: flex-end;
   }
-  .aedStatus-normal {
-    color: #2dd2be;
-    background: rgba(45, 210, 190, 0.1);
-    padding: 3px 8px;
-    border-radius: 4px;
-  }
-  .aedStatus-warn {
-    color: #ffdc3f;
-    background: rgba(45, 210, 190, 0.1);
-    padding: 3px 8px;
-    border-radius: 4px;
-  }
-  .aedStatus-error {
-    color: #ff7e00;
-    background: rgba(255, 126, 0, 0.1);
-    padding: 3px 8px;
-    border-radius: 4px;
-  }
+
   .aedlevel-box,
   .aedlevel-box__real {
     position: relative;

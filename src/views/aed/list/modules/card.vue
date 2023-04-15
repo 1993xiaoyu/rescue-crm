@@ -1,7 +1,13 @@
 <template>
   <div class="aed-census">
     <div class="aed-card">
-      <div v-for="item in Object.keys(aedCensusObj)" :key="item" class="aed-card__item">
+      <div
+        v-for="item in Object.keys(aedCensusObj)"
+        :key="item"
+        class="aed-card__item"
+        :class="{ 'aed-card__item-active': activeTab === item }"
+        @click="quickQuery(item)"
+      >
         <div class="aed-card__item-title">
           {{ aedCensusObj[item].name }}
           <div v-if="aedCensusObj[item].tipNum" class="aed-card__item-tip">
@@ -16,44 +22,59 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { reactive, onMounted } from 'vue'
+  import { reactive, onMounted, ref } from 'vue'
   import { aedQuantity } from '@/api/aed'
+  const activeTab = ref('aedTotal')
+  const emit = defineEmits(['searchList'])
 
   const aedCensusObj = reactive({
     aedTotal: {
       name: '总台数',
       value: 377,
       tipName: '',
+      quickQueryKey: 'aedTotal',
     },
     aedNormal: {
       name: '正常台数',
       value: 263,
       tipName: '正常率',
       tipNum: '',
+      quickQueryKey: 'aedNormal',
     },
     aedCheck: {
       name: '自检失败',
       value: 4,
-      tipName: '故障率',
+      tipName: '失败率',
       tipNum: '',
+      quickQueryKey: 'aedCheck',
     },
     aedWarn: {
-      name: '预警台数',
+      name: '故障台数',
       value: 6,
-      tipName: '预警率',
+      tipName: '故障率',
       tipNum: '',
+      quickQueryKey: 'aedWarn',
     },
     aedOffline: {
       name: '掉线台数',
       value: 2,
       tipName: '掉线率',
       tipNum: '',
+      quickQueryKey: 'aedOffline',
     },
     batteryErrorTotal: {
-      name: '电池/电极片异常',
+      name: '电池异常',
       value: 100,
       tipName: '故障率',
       tipNum: '',
+      quickQueryKey: ' batteryStatus',
+    },
+    electrodeErrorTotal: {
+      name: '电极片异常',
+      value: 100,
+      tipName: '故障率',
+      tipNum: '',
+      quickQueryKey: 'electrodeStatus',
     },
     overtimeTotal: {
       name: '超时巡检台数',
@@ -83,6 +104,11 @@
     aedCensusObj.aedWarn.value = aedWarn || 0
   }
 
+  const quickQuery = (key) => {
+    activeTab.value = key
+    emit('searchList', { quickQuery: aedCensusObj[key].quickQueryKey })
+    console.log(key)
+  }
   onMounted(() => {
     getQuantityData()
   })
@@ -108,13 +134,15 @@
       margin-right: 22px;
       font-size: 14px;
       color: #000;
-      &:first-child {
+      cursor: pointer;
+      &-active {
         background: #7175fc;
         color: #fff;
         .aed-card__item-title {
           color: #fff;
         }
       }
+
       &-value {
         font-size: 32px;
         font-weight: bold;

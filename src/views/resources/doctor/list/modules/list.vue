@@ -4,7 +4,7 @@
     <el-table-column prop="tutorName" label="姓名" width="180" />
     <el-table-column prop="tutorStateName" label="人员状态" width="180">
       <template #default="scope">
-        <el-tag :type="scope.row.tutorState ? 'success' : 'warning'">
+        <el-tag :type="+scope.row.tutorState ? 'warning' : 'success'">
           {{ scope.row.tutorStateName }}
         </el-tag>
       </template>

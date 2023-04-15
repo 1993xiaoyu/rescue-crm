@@ -20,7 +20,9 @@
     <el-table-column label="操作" fixed="right" width="180">
       <template #default="scope">
         <el-button link type="primary" size="small" @click="handleEdit(scope.row)">编辑</el-button>
-        <el-button link type="primary" size="small" @click="handleDetail">详情</el-button>
+        <el-button link type="primary" size="small" @click="handleDetail(scope.row)"
+          >详情</el-button
+        >
         <el-button link type="primary" size="small" @click="handleDel(scope.row)">删除</el-button>
       </template>
     </el-table-column>
@@ -104,9 +106,10 @@
   }
   // 查看详情
   const handleDetail = (item) => {
+    console.log(item, '===item')
     router.push({
-      name: 'doctorDetail',
-      query: { id: item.id },
+      name: 'organDetail',
+      query: { id: item.mechanismId, mechanismName: item.mechanismName },
     })
   }
 

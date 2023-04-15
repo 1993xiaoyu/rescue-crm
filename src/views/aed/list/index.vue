@@ -1,13 +1,14 @@
 <template>
   <div class="aed-box">
-    <Card />
+    <Card @searchList="searchList" />
     <div class="aed-box-search">
-      <Search @editDialogShow="aedDialogShow" @searchList="searchList" />
+      <Search @editDialogShow="aedDialogShow" @searchList="searchList" :enumObj="enumObj" />
       <List ref="listRef" :searchData="searchData" @emitAed="emitAed" />
     </div>
     <EditDialog
       v-model="editDialogShow"
       ref="editDialogRef"
+      :enumObj="enumObj"
       @closeEditDialogShow="aedDialogShow"
       @refreshList="refreshList"
     />
@@ -19,11 +20,19 @@
   import List from './modules/list.vue'
   import Search from './modules/search.vue'
   import EditDialog from '../components/edit-dialog.vue'
+  import { aedStatus, batteryStatus, electrodeStatus } from '@/api/aed'
 
   const searchData = reactive({
     aedNumber: '',
     aedStatus: '',
     installationTime: '',
+    quickQuery: '',
+  })
+
+  const enumObj = reactive({
+    aedStatusList: '',
+    batteryStatusList: '',
+    electrodeStatusList: '',
   })
   const listRef = ref()
   const editDialogRef = ref()
@@ -34,9 +43,15 @@
 
   const searchList = (data) => {
     searchData.aedNumber = data.aedNumber || ''
-    searchData.aedStatus = data.aedStatus || ''
     searchData.installationTime = data.installationTime || ''
-
+    if (data.quickQuery) {
+      searchData.quickQuery = data.quickQuery || ''
+      searchData.aedStatus = ''
+    }
+    if (data.aedStatus) {
+      searchData.quickQuery = ''
+      searchData.aedStatus = data.aedStatus
+    }
     listRef.value.getList()
   }
 
@@ -47,7 +62,28 @@
     editDialogShow.value = true
     editDialogRef.value.setDialogData(data)
   }
+
+  // 请求设备状态
+  const getAedStatus = async () => {
+    const res = await aedStatus({})
+    enumObj.aedStatusList = res.list || []
+  }
+
+  // 电池状态
+  const getBatteryStatus = async () => {
+    const res = await batteryStatus({})
+    enumObj.batteryStatusList = res.list || []
+  }
+
+  // 电极片状态
+  const getElectrodeStatus = async () => {
+    const res = await electrodeStatus({})
+    enumObj.electrodeStatusList = res.list || []
+  }
   onMounted(() => {
+    getAedStatus()
+    getBatteryStatus()
+    getElectrodeStatus()
     listRef.value.getList()
   })
 </script>

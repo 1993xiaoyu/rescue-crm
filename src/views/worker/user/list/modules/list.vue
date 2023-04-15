@@ -19,13 +19,7 @@
     <el-table-column prop="phonenumber" label="电话号" width="180" />
     <el-table-column prop="email" label="邮箱" width="180" />
 
-    <el-table-column prop="sex" label="性别" width="120">
-      <template #default="scope">
-        <div>
-          {{ scope.row.sex === '1' ? '女' : scope.row.sex === '0' ? '男' : '--' }}
-        </div>
-      </template>
-    </el-table-column>
+    <el-table-column prop="sex" label="性别"> </el-table-column>
 
     <el-table-column prop="idiccid" label="身份证号" width="180" />
     <el-table-column prop="createTime" label="创建时间" width="180" />

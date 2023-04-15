@@ -19,71 +19,75 @@
 
   const detailList = [
     {
-      title: '设备序列号',
-      key: 'aedNumber',
+      title: '机构名称',
+      key: 'mechanismName',
     },
     {
-      title: '品牌',
-      key: 'equipmentBrand',
+      title: '机构状态',
+      key: 'stauts',
     },
     {
-      title: '设备型号',
-      key: 'aedModel',
+      title: '机构性质',
+      key: 'management',
     },
-
     {
-      title: '保修期至',
-      key: 'equipmentDate',
+      title: '机构类别',
+      key: 'organizationType',
     },
-
     {
-      title: '设备状态',
-      key: 'aedStatus',
+      title: '机构地址',
+      key: 'mechanismAdress',
     },
 
     {
-      title: '电池状态',
-      key: 'batteryStatus',
+      title: '机构电话',
+      key: 'phone',
     },
     {
-      title: '电池电量',
-      key: 'aedLevel',
+      title: '发证机关',
+      key: 'sendCard',
     },
     {
-      title: '电极片状态',
-      key: 'electrodeStatus',
+      title: '唯一标识',
+      key: 'identificationCode',
     },
     {
-      title: '安装厂商',
-      key: 'installationManufacturer',
+      title: '法人姓名',
+      key: 'legalName',
     },
     {
-      title: '安装地址',
-      key: 'aedPosition',
+      title: '法人证件号',
+      key: 'legalIccid',
     },
     {
-      title: '安装时间',
-      key: 'installationTime',
+      title: '负责人姓名',
+      key: 'chargeName',
     },
     {
-      title: '资金来源',
-      key: 'capitalSource',
+      title: '负责人证件号',
+      key: 'chargeIccid',
     },
     {
-      title: 'AED柜号',
-      key: 'aedNo',
+      title: '负责人电话',
+      key: 'chargePhone',
+    },
+
+    {
+      title: '有效期开始',
+      key: 'startTime',
+    },
+
+    {
+      title: '有效期结束',
+      key: 'endTime',
     },
     {
-      title: '设备管理员',
-      key: 'administrators',
+      title: '开业日期',
+      key: 'openDate',
     },
     {
-      title: '管理员手机',
-      key: 'administratorsPhone',
-    },
-    {
-      title: '管理单位座机',
-      key: 'administratorsLandline',
+      title: '下一校验日期',
+      key: 'calibrationDate',
     },
   ]
 </script>

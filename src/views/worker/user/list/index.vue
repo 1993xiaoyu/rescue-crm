@@ -22,6 +22,9 @@
   const dialogShow = ref(false)
   const editDialogShow = (data) => {
     dialogShow.value = data
+    if (!data) {
+      listRef.value.getList()
+    }
   }
 
   const searchList = (data) => {

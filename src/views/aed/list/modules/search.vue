@@ -12,11 +12,14 @@
         clearable
       />
     </el-form-item>
-    <el-form-item label="状态" prop="aedStatus">
+    <el-form-item label="设备状态" prop="aedStatus">
       <el-select v-model="ruleForm.aedStatus" placeholder="请选择" clearable>
-        <el-option label="正常" value="正常" />
-        <el-option label="故障" value="故障" />
-        <el-option label="预警" value="预警" />
+        <el-option
+          :label="item.aedStatus"
+          :value="item.aedStatus"
+          :key="item.id"
+          v-for="item in enumObj.aedStatusList || []"
+        />
       </el-select>
     </el-form-item>
 
@@ -28,6 +31,7 @@
       <el-button @click="handleUpload">导入</el-button>
       <el-button @click="handleExport">导出</el-button>
       <el-button @click="aedDialogShow" type="primary">新增设备</el-button>
+      <el-button @click="handleUpload" type="primary">批量更新巡检信息</el-button>
     </el-form-item>
   </el-form>
   <Upload v-model="uploadDialogShow" @closeUploadDialogShow="closeUploadDialogShow" />
@@ -38,6 +42,13 @@
   import Upload from './upload.vue'
   import { exportData } from '@/api/aed'
   import { ElMessage } from 'element-plus'
+
+  const props = defineProps({
+    enumObj: {
+      type: Object,
+      default: () => {},
+    },
+  })
 
   const emit = defineEmits(['editDialogShow', 'searchList'])
 

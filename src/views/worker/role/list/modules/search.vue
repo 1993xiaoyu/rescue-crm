@@ -1,11 +1,11 @@
 <template>
   <el-form ref="ruleFormRef" :model="ruleForm" label-width="80px" :inline="true">
     <el-form-item label="角色名" prop="roleName">
-      <el-input v-model="ruleForm.roleName" placeholder="请输入" />
+      <el-input v-model="ruleForm.roleName" placeholder="请输入" clearable />
     </el-form-item>
 
     <el-form-item label="状态" prop="status">
-      <el-select v-model="ruleForm.status" placeholder="请选择">
+      <el-select v-model="ruleForm.status" placeholder="请选择" clearable>
         <el-option label="开启" value="0" />
         <el-option label="停用" value="1" />
       </el-select>

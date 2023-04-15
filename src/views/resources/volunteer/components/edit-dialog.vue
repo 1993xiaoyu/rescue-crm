@@ -3,6 +3,7 @@
     v-model="dialogVisible"
     :title="currDialogType === 'add' ? '新增志愿者' : '编辑志愿者'"
     width="60%"
+    top="2vh"
     class="volunteer-dialog"
   >
     <el-form
@@ -29,8 +30,12 @@
 
       <el-form-item label="职业" prop="volunteerOccupation" required>
         <el-select v-model="ruleForm.volunteerOccupation" placeholder="请选择职业">
-          <el-option label="教师" value="1" />
-          <el-option label="医生" value="2" />
+          <el-option
+            :label="item.occupation"
+            :key="item.id"
+            :value="item.occupation"
+            v-for="item in occupationtList"
+          />
         </el-select>
       </el-form-item>
 
@@ -127,9 +132,10 @@
   import { ElMessage } from 'element-plus'
   import useEnum from '@/hooks/useEnum'
 
-  const { getQualificationData, qualificationList } = useEnum()
+  const { getQualificationData, qualificationList, getOccupationtData, occupationtList } = useEnum()
 
   getQualificationData()
+  getOccupationtData()
   // qualificationList()
 
   const emit = defineEmits(['closeEditDialogShow', 'refreshList'])

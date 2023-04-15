@@ -5,12 +5,19 @@ interface extendRoute {
   hidden?: boolean
 }
 import dataScreenRouter from './modules/dataScreen'
+import rescueRouter from './modules/rescue'
 import workRouter from './modules/work'
 import aedRouter from './modules/aed'
 import resourcesRouter from './modules/resources'
 
 // 异步组件
-export const asyncRoutes = [...dataScreenRouter, ...aedRouter, ...resourcesRouter, ...workRouter]
+export const asyncRoutes = [
+  ...dataScreenRouter,
+  ...rescueRouter,
+  ...aedRouter,
+  ...resourcesRouter,
+  ...workRouter,
+]
 
 /**
  * path ==> 路由路径
@@ -52,13 +59,12 @@ export const constantRoutes: Array<RouteRecordRaw & extendRoute> = [
     name: 'layout',
     component: Layout,
     redirect: '/home',
-    meta: { title: '首页', icon: 'House' },
     children: [
       {
         path: '/home',
         component: () => import('@/views/home/index.vue'),
         name: 'home',
-        meta: { title: '首页', icon: 'House', affix: true, role: ['other'] },
+        meta: { title: '工作台', icon: 'House', affix: true, role: ['other'] },
       },
     ],
   },
