@@ -6,15 +6,16 @@
         <el-button @click="goBack">返回</el-button>
       </div>
     </div>
+    <DeviceStatus :detailObj="detailObj" />
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="基础信息" name="1">
         <BasicDetail :detailObj="detailObj" />
       </el-tab-pane>
       <el-tab-pane label="使用记录" name="2">
-        <UseList :detailObj="detailObj" />
+        <UseList />
       </el-tab-pane>
       <el-tab-pane label="巡检记录" name="3">
-        <InspectionList :detailObj="detailObj" />
+        <InspectionList />
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -23,6 +24,7 @@
   import { getCurrentInstance, onMounted, ref } from 'vue'
   import { aedList } from '@/api/aed'
 
+  import DeviceStatus from './modules/device-status.vue'
   import BasicDetail from './modules/basic-detail.vue'
   import InspectionList from './modules/inspection-list.vue'
   import UseList from './modules/use-list.vue'

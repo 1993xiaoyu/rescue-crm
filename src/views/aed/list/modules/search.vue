@@ -12,16 +12,6 @@
         clearable
       />
     </el-form-item>
-    <el-form-item label="设备状态" prop="aedStatus">
-      <el-select v-model="ruleForm.aedStatus" placeholder="请选择" clearable>
-        <el-option
-          :label="item.aedStatus"
-          :value="item.aedStatus"
-          :key="item.id"
-          v-for="item in enumObj.aedStatusList || []"
-        />
-      </el-select>
-    </el-form-item>
 
     <el-form-item>
       <el-button type="primary" @click="submitForm">查询</el-button>
@@ -43,19 +33,11 @@
   import { exportData } from '@/api/aed'
   import { ElMessage } from 'element-plus'
 
-  const props = defineProps({
-    enumObj: {
-      type: Object,
-      default: () => {},
-    },
-  })
-
   const emit = defineEmits(['editDialogShow', 'searchList'])
 
   const ruleFormRef = ref()
   const ruleForm = reactive({
     aedNumbers: '',
-    aedStatus: '',
     installationTime: '',
   })
 

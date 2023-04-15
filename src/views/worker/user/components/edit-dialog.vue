@@ -41,27 +41,20 @@
         <el-switch v-model="ruleForm.status" active-value="0" inactive-value="1" />
       </el-form-item>
 
-      <el-form-item label="所属机构" prop="hospital" required>
-        <el-select v-model="ruleForm.hospital" placeholder="请选择">
-          <el-option label="所属机构1" value="1" />
-          <el-option label="所属机构2" value="2" />
-          <el-option label="所属机构3" value="3" />
+      <el-form-item label="所属机构" prop="mechanismName">
+        <el-select v-model="ruleForm.mechanismName" placeholder="请选择" filterable>
+          <el-option
+            :label="item.mechanismName"
+            :value="item.mechanismName"
+            :key="item.id"
+            v-for="item in mechanismNameList"
+          />
         </el-select>
       </el-form-item>
 
       <el-form-item label="身份证号" prop="idicciid">
         <el-input v-model="ruleForm.idicciid" />
       </el-form-item>
-
-      <!-- <el-form-item label="出生时间" prop="birthday">
-                <el-date-picker
-                    v-model="ruleForm.birthday"
-                    type="date"
-                    placeholder="请选择时间"
-                    style="width: 100%"
-                    value-format="YYYY-MM-DD"
-                />
-            </el-form-item> -->
 
       <el-form-item label="用户角色" prop="roleIds">
         <el-select v-model="ruleForm.roleIds" multiple placeholder="请选择">
@@ -83,6 +76,10 @@
   import { reactive, ref, computed } from 'vue'
   import { userAdd, userEdit } from '@/api/work'
   import { ElMessage } from 'element-plus'
+  import useEnum from '@/hooks/useEnum'
+
+  const { getMechanismNameData, mechanismNameList } = useEnum()
+  getMechanismNameData()
   const emit = defineEmits(['closeEditDialogShow'])
 
   const props = defineProps({
@@ -98,7 +95,7 @@
     userName: '',
     sex: '男',
     status: '0',
-    hospital: '',
+    mechanismName: '',
     phonenumber: '',
     email: '',
     idicciid: '',
@@ -115,13 +112,7 @@
         trigger: 'blur',
       },
     ],
-    hospital: [
-      {
-        required: true,
-        message: '请选择',
-        trigger: 'blur',
-      },
-    ],
+
     phoneNumber: [
       {
         required: true,

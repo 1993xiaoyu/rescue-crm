@@ -37,22 +37,10 @@
     },
 
     {
-      title: '设备状态',
-      key: 'aedStatus',
-    },
-
-    {
-      title: '电池状态',
-      key: 'batteryStatus',
-    },
-    {
       title: '电池电量',
       key: 'aedLevel',
     },
-    {
-      title: '电极片状态',
-      key: 'electrodeStatus',
-    },
+
     {
       title: '安装厂商',
       key: 'installationManufacturer',

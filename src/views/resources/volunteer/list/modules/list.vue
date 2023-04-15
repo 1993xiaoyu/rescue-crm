@@ -4,7 +4,7 @@
     <el-table-column prop="volunteerName" label="姓名" width="180" />
     <el-table-column prop="volunteerState" label="人员状态" width="180">
       <template #default="scope">
-        <el-tag :type="scope.row.volunteerState ? 'success' : 'warning'">
+        <el-tag :type="+scope.row.volunteerState ? 'warning' : 'success'">
           {{ scope.row.volunteerState === '0' ? '开启' : '冻结' }}
         </el-tag>
       </template>

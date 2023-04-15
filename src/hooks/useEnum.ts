@@ -8,6 +8,7 @@ import {
   getOccupationt,
   getOrganization,
   getMechanismStauts,
+  mechanismName,
 } from '@/api/enum'
 export default function useSideBar() {
   const qualificationList = ref([])
@@ -18,6 +19,7 @@ export default function useSideBar() {
   const occupationtList = ref([])
   const organizationList = ref([])
   const mechanismStautsList = ref([])
+  const mechanismNameList = ref([])
   const getQualificationData = async () => {
     if (!qualificationList.value.length) {
       const res: any = await getQualification({})
@@ -67,11 +69,19 @@ export default function useSideBar() {
     }
   }
 
+  //机构状态
   const getMechanismStautsData = async () => {
     if (!mechanismStautsList.value.length) {
       const res: any = await getMechanismStauts({})
       mechanismStautsList.value = res.list || []
-      console.log(mechanismStautsList.value, '=== mechanismStautsList.value')
+    }
+  }
+
+  // 机构名称
+  const getMechanismNameData = async () => {
+    if (!mechanismNameList.value.length) {
+      const res: any = await mechanismName({})
+      mechanismNameList.value = res.list || []
     }
   }
 
@@ -84,6 +94,7 @@ export default function useSideBar() {
     occupationtList,
     organizationList,
     mechanismStautsList,
+    mechanismNameList,
     getQualificationData,
     getHospitalData,
     getDepartmentData,
@@ -92,5 +103,6 @@ export default function useSideBar() {
     getOccupationtData,
     getOrganizationData,
     getMechanismStautsData,
+    getMechanismNameData,
   }
 }

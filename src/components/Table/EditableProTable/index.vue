@@ -196,29 +196,29 @@
     getData()
   }
 
-  onMounted(() => {
-    watch(
-      () => props.data,
-      (val) => {
-        // // 转换数据
-        transData.value = deepObjClone(val)
-        // 存储一个临时变量
-        for (let item of transData.value) {
-          if (props.editableKeys.includes(item.id)) {
-            item.edit = true
-          }
-          for (let attr in item) {
-            let temp = `${attr}te__mp`
-            item[temp] = item[attr]
-          }
+  watch(
+    () => props.data,
+    (val) => {
+      // // 转换数据
+      transData.value = deepObjClone(val)
+      // 存储一个临时变量
+      for (let item of transData.value) {
+        if (props.editableKeys.includes(item.id)) {
+          item.edit = true
         }
-      },
-      {
-        immediate: true,
-        deep: true,
-      },
-    )
-  })
+        for (let attr in item) {
+          let temp = `${attr}te__mp`
+          item[temp] = item[attr]
+        }
+      }
+    },
+    {
+      immediate: true,
+      deep: true,
+    },
+  )
+
+  onMounted(() => {})
 
   const visible = ref(false)
 

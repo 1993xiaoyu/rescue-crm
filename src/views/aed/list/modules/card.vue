@@ -62,37 +62,38 @@
       tipNum: '',
       quickQueryKey: 'aedOffline',
     },
-    batteryErrorTotal: {
+    batteryStatus: {
       name: '电池异常',
-      value: 100,
+      value: 0,
       tipName: '故障率',
       tipNum: '',
-      quickQueryKey: ' batteryStatus',
+      quickQueryKey: 'batteryStatus',
     },
-    electrodeErrorTotal: {
+    electrodeStatus: {
       name: '电极片异常',
-      value: 100,
+      value: 0,
       tipName: '故障率',
       tipNum: '',
       quickQueryKey: 'electrodeStatus',
     },
-    overtimeTotal: {
-      name: '超时巡检台数',
-      value: 2,
-      tipName: '超时率',
-      tipNum: '',
-    },
+    // overtimeTotal: {
+    //   name: '超时巡检台数',
+    //   value: 2,
+    //   tipName: '超时率',
+    //   tipNum: '',
+    // },
   })
 
   const percentNum = (item) => {
     const aedTotal = aedCensusObj.aedTotal.value || ''
-    return !aedTotal ? '' : ((item / aedTotal) * 100).toFixed(2) + '%'
+    return !aedTotal || !item ? '' : ((item / aedTotal) * 100).toFixed(2) + '%'
   }
 
   // 请求列表
   const getQuantityData = async () => {
     const res: any = await aedQuantity({})
-    const { aedTotal, aedNormal, aedOffline, aedCheck, aedWarn } = res
+    const { aedTotal, aedNormal, aedOffline, aedCheck, aedWarn, batteryStatus, electrodeStatus } =
+      res
     aedCensusObj.aedTotal.value = aedTotal || 0
     aedCensusObj.aedNormal.tipNum = percentNum(aedNormal) || ''
     aedCensusObj.aedNormal.value = aedNormal || 0
@@ -102,6 +103,10 @@
     aedCensusObj.aedCheck.value = aedCheck || 0
     aedCensusObj.aedWarn.tipNum = percentNum(aedWarn) || ''
     aedCensusObj.aedWarn.value = aedWarn || 0
+    aedCensusObj.batteryStatus.tipNum = percentNum(batteryStatus) || ''
+    aedCensusObj.batteryStatus.value = batteryStatus || 0
+    aedCensusObj.electrodeStatus.tipNum = percentNum(electrodeStatus) || ''
+    aedCensusObj.electrodeStatus.value = electrodeStatus || 0
   }
 
   const quickQuery = (key) => {
@@ -138,8 +143,10 @@
       &-active {
         background: #7175fc;
         color: #fff;
-        .aed-card__item-title {
-          color: #fff;
+        .aed-card__item-title,
+        .aed-card__item-value,
+        .aed-card__item-tip {
+          color: #fff !important;
         }
       }
 

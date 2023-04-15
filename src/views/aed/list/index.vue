@@ -2,7 +2,7 @@
   <div class="aed-box">
     <Card @searchList="searchList" />
     <div class="aed-box-search">
-      <Search @editDialogShow="aedDialogShow" @searchList="searchList" :enumObj="enumObj" />
+      <Search @editDialogShow="aedDialogShow" @searchList="searchList" />
       <List ref="listRef" :searchData="searchData" @emitAed="emitAed" />
     </div>
     <EditDialog
@@ -24,7 +24,6 @@
 
   const searchData = reactive({
     aedNumber: '',
-    aedStatus: '',
     installationTime: '',
     quickQuery: '',
   })
@@ -44,14 +43,7 @@
   const searchList = (data) => {
     searchData.aedNumber = data.aedNumber || ''
     searchData.installationTime = data.installationTime || ''
-    if (data.quickQuery) {
-      searchData.quickQuery = data.quickQuery || ''
-      searchData.aedStatus = ''
-    }
-    if (data.aedStatus) {
-      searchData.quickQuery = ''
-      searchData.aedStatus = data.aedStatus
-    }
+    searchData.quickQuery = data.quickQuery || ''
     listRef.value.getList()
   }
 
