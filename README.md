@@ -20,7 +20,7 @@ npm run lint:prettier
 
 ## 文件目录结构
 ```
-vue-admin-perfect
+rescue-crm
 ├─ public                 # 静态资源文件（忽略打包）
 ├─ src
 │  ├─ api                 # API 接口管理
